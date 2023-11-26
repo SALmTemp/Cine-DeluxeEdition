@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>
+        TVflix
+    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary meta tags -->
+    <meta name="description" content="Tvflix is a popular movie app made by TeamMondongo." />
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{url_for('static', filename='/assets/image/favicon.svg')}}" type="image/svg+xml"/>
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    
+    <!----AQUI VA LOS STYLES CSS-->
+     <!-- custom css link -->
+    
+    <link rel="shortcut icon" href="/image/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/main/Main.css')}}">
+    
+   
+   
+</head>
+<body>
+ 
+  {% block body %}
+  {% endblock %}
+
+  <!---AQUI VA LOS SCRIPT-->
+
+  <script  type="module" src="{{ url_for('static', filename='js/detail.js') }}"></script>
+  <script src="{{url_for('static', filename='js/global.js')}}" defer></script>
+
+  
+</body>
+</html>
