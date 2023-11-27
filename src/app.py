@@ -16,7 +16,7 @@ from config.db import  app
 from rutas.main import routes_main
 from rutas.details import routes_details
 from rutas.movielist import routes_movielist
-
+from rutas.login import routes_login
 
 
 
@@ -35,13 +35,14 @@ from rutas.movielist import routes_movielist
 app.register_blueprint(routes_main, url_prefix="/fronted")
 app.register_blueprint(routes_details, url_prefix="/fronted")
 app.register_blueprint(routes_movielist, url_prefix="/fronted")
+app.register_blueprint(routes_login, url_prefix="/fronted")
 
 
 
 @app.route("/")
 def index():
     titulo= "Pagina Principal"
-    return render_template('main/index.html', titles=titulo)
+    return render_template('login/login.html', titles=titulo)
 
 @app.route("/algo")
 def otr():

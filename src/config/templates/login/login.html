@@ -1,0 +1,37 @@
+{% extends "./LayoutLogin.html" %}
+{% block body %}
+
+
+<div class="container">
+    <div class="row  justify-content-center" >
+      <div class="col-md-12 mt-5">
+        <form class="mr-5 pr-5 pl-5 pt-5 pb-5">
+          <div class="form-group ">
+            <h4 class="mb-5 text-center">inicio de sesion</h4>
+            <label for="usuario">Usuario:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="usuario"
+              name="usuario"
+              required
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="contrasena"
+              name="contrasena"
+              required
+            />
+          </div>
+  
+          <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
