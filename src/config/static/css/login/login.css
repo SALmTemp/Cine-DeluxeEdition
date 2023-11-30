@@ -1,17 +1,30 @@
+@font-face{
+font-family: fuenteLogin;
+src: url("/static/assets/fonts/Montserrat-Bold.ttf");
+
+}
+
 body {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+   font-family: fuenteLogin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+   
+    background-image: url('/static/assets/image/login.png');
+    background-size: cover; /* Para cubrir todo el fondo */
+    background-position: center; /* Posición central de la imagen */
+    background-repeat: no-repeat; /* No repetir la imagen */
+    
   }
 
   form {
-    
+    color: #fff;
     padding: 20px;
-    border: 1px solid #000000; /* Cambia el color del borde aquí */
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    border: 2px solid rgba(255, 255, 255, .6); /* Cambia el color del borde aquí */
+    border-radius: 20px;
+    
+    backdrop-filter: blur(7px);
   }
 
   input {
@@ -23,5 +36,19 @@ body {
   }
 
   
+  .icon-only {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
 
-  
+  .icon-only input {
+    flex: 1;
+    padding-right: 30px; /* Ajusta este valor según sea necesario */
+  }
+
+  .icon-only .input-group-text {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+  }
