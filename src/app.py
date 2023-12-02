@@ -1,6 +1,7 @@
 #favor mantener todo organizado
-from flask import  render_template , redirect , url_for , session
-from config.db import  app
+from flask import  redirect, request, jsonify, json, session, render_template
+from config.db import  db, app, ma
+
 
 
 #Importar los model (Tabla de la base de datos)
