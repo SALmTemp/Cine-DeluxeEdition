@@ -1,10 +1,20 @@
 #favor mantener todo organizado
-from flask import  render_template , redirect , url_for , session
-from config.db import  app
+from flask import Flask,  redirect, request, jsonify, json, session, render_template
+from config.db import db, app, ma
 
 
 #Importar los model (Tabla de la base de datos)
 #Tener en cuenta el orden de las tabla para las relaciones 
+from api.experiencia import routes_experiencia
+from api.perfilcreado import routes_perfilcreado
+from api.subcripcion import routes_subcripcion
+from api.userroles import routes_userroles
+from api.estado import routes_estados
+from api.user import routes_user
+from api.token import routes_token
+from api.cuenta import routes_cuenta
+
+
 
 
 
@@ -23,6 +33,14 @@ from rutas.movielist import routes_movielist
 
 
 #ubicacion del api 
+app.register_blueprint(routes_user, url_prefix="/api")
+app.register_blueprint(routes_token, url_prefix="/api")
+app.register_blueprint(routes_cuenta, url_prefix="/api")
+app.register_blueprint(routes_experiencia, url_prefix="/api")
+app.register_blueprint(routes_perfilcreado, url_prefix="/api")
+app.register_blueprint(routes_subcripcion, url_prefix="/api")
+app.register_blueprint(routes_userroles, url_prefix="/api")
+app.register_blueprint(routes_estados, url_prefix="/api")
 
 
 
