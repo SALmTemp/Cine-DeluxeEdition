@@ -8,15 +8,14 @@ class Cuentas(db.Model):
     descripcion = db.Column(db.Text)
     
 
-    def __init__(self,cuenta_id, saldo,descripcion):
-        self.cuenta_id= cuenta_id
+    def __init__(self,saldo,descripcion):
         self.saldo = saldo
         self.descripcion = descripcion
         
 
-        with app.app_context():
-            db.create_all()
+with app.app_context():
+    db.create_all()
 
 class CuentasSchema(ma.Schema):
     class Meta:
-        fields = ('cuenta_id','saldo', 'descripcion')
+        fields = ('saldo', 'descripcion')

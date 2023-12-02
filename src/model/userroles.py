@@ -4,7 +4,7 @@ class UserRoles(db.Model):
     __tablename__ = "tblusersroles"
 
     rol_id = db.Column(db.Integer, primary_key=True)
-    rol_name = db.Column(db.String(50))
+    rol_name = db.Column(db.String(200))
     
 
     def __init__(self,rol_id, rol_name):
@@ -12,8 +12,8 @@ class UserRoles(db.Model):
         self.rol_name = rol_name
         
 
-        with app.app_context():
-            db.create_all()
+with app.app_context():
+    db.create_all()
 
 class UserRolesSchema(ma.Schema):
     class Meta:

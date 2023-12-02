@@ -8,15 +8,14 @@ class Experiencia(db.Model):
     experiencia = db.Column(db.Integer)
     
 
-    def __init__(self,experiencia_id, nivel,experiencia):
-        self.experiencia_id= experiencia_id
+    def __init__(self, nivel,experiencia):
         self.nivel = nivel
         self.experiencia = experiencia
         
 
-        with app.app_context():
-            db.create_all()
+with app.app_context():
+    db.create_all()
 
 class ExperienciasSchema(ma.Schema):
     class Meta:
-        fields = ('experiencia_id','nivel', 'experiencia')
+        fields = ('nivel', 'experiencia')

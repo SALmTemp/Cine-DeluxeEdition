@@ -11,8 +11,7 @@ class Estados(db.Model):
     notifications = db.Column(db.Text)
     
 
-    def __init__(self,estado_id, is_active,is_suspended_account,is_delete_account,last_active,notifications):
-        self.estado_id= estado_id
+    def __init__(self,is_active,is_suspended_account,is_delete_account,last_active,notifications):
         self.is_active = is_active
         self.is_suspended_account = is_suspended_account
         self.is_delete_account = is_delete_account
@@ -20,9 +19,9 @@ class Estados(db.Model):
         self.notifications = notifications
         
 
-        with app.app_context():
-            db.create_all()
+with app.app_context():
+    db.create_all()
 
 class EstadosSchema(ma.Schema):
     class Meta:
-        fields = ('estado_id','is_active', 'is_suspended_account', 'is_delete_account', 'last_active', 'notifications')
+        fields = ('is_active', 'is_suspended_account', 'is_delete_account', 'last_active', 'notifications')
