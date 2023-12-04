@@ -1,0 +1,169 @@
+{% extends "./LayoutRegistroMain.html" %}
+{% block body %}
+<body>
+  <!-- header -->
+  <header>
+    <div class="header-wrapper">
+      <img src="{{ url_for('static', filename='assets/image/logo.svg') }}" alt="logo" />
+      <a  href="/fronted/indexlogin" class="sign-in-btn">Sign In</a>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Películas, programas de televisión y más ilimitados.</h1>
+      <h4>Mira en cualquier lugar. Cancele en cualquier momento.</h4>
+      <p>
+        ¿Listo para mirar? Ingrese su correo electrónico para crear o reiniciar su membresía.
+      </p>
+      <div class="form-container">
+        <a href="indexregister" class="Sign-up-btn">
+          Empieza YA!
+          <img src="{{ url_for('static', filename='assets/image/arrow.svg') }}" alt="" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- sections -->
+  <section>
+    <div class="section-wrapper">
+      <div>
+        <img src="{{ url_for('static', filename='assets/image/3.png') }}" alt="" />
+      </div>
+      <div>
+        <h2>
+          Disfruta en tu televisor, móvil o en tu Computadora</h2>
+        <p>
+         Míralo en Smart TV, Playstation, Xbox, Chromecast, Apple TV, Blu-ray
+          jugadores y más.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reverse-section">
+    <div class="section-wrapper">
+      <div>
+        <h2>Proximamente Podrás Crear perfiles para niños.</h2>
+        <p>
+          Envía a los niños a vivir aventuras con sus personajes favoritos en un espacio
+          hecho solo para ellos, gratis con tu membresía.
+        </p>
+      </div>
+      <div>
+        <img src="{{ url_for('static', filename='assets/image/MobileTVFLix.png') }}" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-wrapper">
+      <div>
+        <img src="{{ url_for('static', filename='assets/image/3.png') }}" alt="" />
+      </div>
+      <div>
+        <h2>Mira por todas partes.</h2>
+        <p>
+          Transmita películas y programas de TV ilimitados en su teléfono, tableta, computadora portátil,
+          y televisión.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <div class="faq">
+    <div class="faq-wrapper">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <a href="#faq1" class="faq-title">Que es TVFlix?</a>
+        <div class="faq-item__content" id="faq1">  
+          TVFlix es un servicio de streaming que ofrece una amplia variedad de
+          programas de televisión, películas, anime, documentales y más galardonados en
+          miles de dispositivos conectados a Internet.
+          <br />
+          <br />
+          Puedes mirar todo lo que quieras, cuando quieras, sin necesidad de
+          comercial único, todo por un precio mensual bajo. Siempre hay
+          Se agregan algo nuevo para descubrir y nuevos programas de televisión y películas.
+          ¡cada semana!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <a href="#faq2" class="faq-title">
+          ¿Cuánto cuesta TVFlix?</a>
+        <div class="faq-item__content" id="faq2">
+          Mire Netflix en su teléfono inteligente, tableta, Smart TV, computadora portátil o
+          dispositivo de transmisión, todo por una tarifa mensual fija. Los planes van desde
+          De 3,99 a 11,99 dólares al mes. Sin costes extra, sin contratos.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <a href="#faq3" class="faq-title">Donde lo puedo ver?</a>
+        <div class="faq-item__content" id="faq3">   
+        Mire en cualquier lugar y en cualquier momento. Inicia sesión con tu cuenta de Netflix para mirar
+        instantáneamente en la web en netflix.com desde su computadora personal o
+        en cualquier dispositivo conectado a Internet que ofrezca la aplicación Netflix,
+        incluidos televisores inteligentes, teléfonos inteligentes, tabletas y reproductores multimedia de transmisión
+        y consolas de juegos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer form -->
+  <div class="footer-form">
+    <h3>
+    ¿Listo para mirar? Ingrese su correo electrónico para crear o reiniciar su membresía.
+    </h3>
+    <div class="form-container">
+      <input type="text" placeholder="Email address" />
+      <button>
+        Empieza Ya!
+        <img src="./assets/arrow.svg" alt="" />
+      </button>
+    </div>
+  </div>
+  <footer class="footer">
+    <p>Preguntas? Llamada ...</p>
+    <div class="footer-cols">
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Speed Test</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Help Centre</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Cookie Preferences</a></li>
+            <li><a href="#">Watch for Free</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Ways to Watch</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Legal Notices</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Media Centre</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Netflix Originals</a></li>
+        </ul>
+        <div class="select">
+          <select name="format" id="format">
+             <option selected disabled>Lenguague</option>
+             <option value="Es">es ESpañol</option>
+             <option value="us">us English</option>
+          </select>
+       </div>
+        
+    </div>
+</footer>
+</body>
+{% endblock %}
