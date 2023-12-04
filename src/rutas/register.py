@@ -9,7 +9,7 @@ import ssl
 from email.message import EmailMessage
 from flask import Blueprint , render_template,request,jsonify,session
 
-from model.user import User, UserSchema
+from Model.user import User, UserSchema
 
 routes_register = Blueprint("routes_register",__name__)
 
