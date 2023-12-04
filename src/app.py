@@ -5,8 +5,14 @@ from config.db import db, app, ma
 
 #Importar los model (Tabla de la base de datos)
 #Tener en cuenta el orden de las tabla para las relaciones 
-
-from api.cuenta import routes_Cuentas
+from api.experiencia import routes_experiencia
+from api.perfilcreado import routes_perfilcreado
+from api.subcripcion import routes_subcripcion
+from api.userroles import routes_userroles
+from api.estado import routes_estados
+from api.user import routes_user
+from api.token import routes_token
+from api.cuenta import routes_cuenta
 
 
 

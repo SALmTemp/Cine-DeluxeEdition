@@ -2,7 +2,7 @@ from config.db import db, app, ma
 from flask import Flask,  redirect, request, jsonify, json, session, render_template
 from flask import Blueprint, request, jsonify, json
 
-from model.token import Token, TokenSchema
+from Model.token import Token, TokenSchema
 
 routes_token = Blueprint("routes_token", __name__)
 
