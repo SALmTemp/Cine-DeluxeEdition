@@ -1005,6 +1005,31 @@ body {
     }
 }
 
+.Play {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ff0000;
+    /* Color de fondo rojo */
+    color: #ffffff;
+    /* Color del texto blanco */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    border: 2px solid #ff0000;
+    /* Borde del botón */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transiciones suaves */
+}
+
+.Play:hover {
+    background-color: #5b0b0b;
+    /* Cambio de color de fondo al pasar el ratón */
+    color: #ff0000;
+    /* Cambio de color del texto al pasar el ratón */
+}
+
 
 /* screen larger than 1200px */
 

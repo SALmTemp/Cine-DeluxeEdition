@@ -3,7 +3,7 @@ from config.db import db, app, ma
 class PerfilesCreados(db.Model):
     __tablename__ = "tblperfilescreados"
 
-    id_perfilescreados = db.Column(db.Integer, primary_key=True)
+    id_perfilescreados = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_token = db.Column(db.Integer, db.ForeignKey('tbltoken.id_token'))
     nombre = db.Column(db.String(200))
     imagen = db.Column(db.String(200))
@@ -19,6 +19,8 @@ class PerfilesCreados(db.Model):
 
 with app.app_context():
     db.create_all()
+    
+
 
 class PerfilesCreadosSchema(ma.Schema):
     class Meta:

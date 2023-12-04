@@ -3,7 +3,7 @@ from config.db import db, app, ma
 class User(db.Model):
     __tablename__ = "tblusers"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=False)
+    id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
     id_subcripcion = db.Column(db.Integer, db.ForeignKey('tblsubcripciones.id'))
     id_cuenta = db.Column(db.Integer, db.ForeignKey('tblcuentas.cuenta_id'))
     id_estado = db.Column(db.Integer, db.ForeignKey('tblestados.estado_id'))
@@ -14,7 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(200))
     password = db.Column(db.String(200))
     fullname = db.Column(db.String(200))
-    registration = db.Column(db.String(200))
+    registration = db.Column(db.DateTime) 
     
 
     def __init__(self,id_subcripcion, id_cuenta, id_estado,id_experiencia,id_perfilescreados,id_usersroles,username,email,password,fullname,registration):

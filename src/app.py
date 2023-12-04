@@ -37,6 +37,9 @@ from rutas.main import routes_main
 from rutas.details import routes_details
 from rutas.movielist import routes_movielist
 from rutas.registromain import routes_RegistroMain
+from rutas.login import routes_login
+from rutas.register import routes_register
+from rutas.profile import routes_profile
 
 
 
@@ -66,6 +69,9 @@ app.register_blueprint(routes_main, url_prefix="/fronted")
 app.register_blueprint(routes_details, url_prefix="/fronted")
 app.register_blueprint(routes_movielist, url_prefix="/fronted")
 app.register_blueprint(routes_RegistroMain, url_prefix="/fronted")
+app.register_blueprint(routes_login, url_prefix="/fronted")
+app.register_blueprint(routes_register, url_prefix="/fronted")
+app.register_blueprint(routes_profile, url_prefix="/fronted")
 
 
 

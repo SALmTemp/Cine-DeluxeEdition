@@ -1,0 +1,90 @@
+{% extends "./LayoutRegister.html" %}
+{% block body %}
+<body>
+  <header>
+    <div class="header-wrapper">
+      <a href="indexregistromain">
+        <img src="{{ url_for('static', filename='assets/image/logo.svg') }}" alt="logo" />
+    </a>
+      <a  href="/fronted/indexlogin" class="sign-in-btn">Sign In</a>
+    </div>
+  </header>
+    <form action="#" class="form">
+      <img src="{{ url_for('static', filename='assets/image/dispositivos.png') }}" alt="" />
+      <h1 class="text-center">Completa la configuración de tu cuenta</h1>
+      <small class="text-description">TVFlix está personalizado para ti. Crea una contraseña para comenzar a ver TVFlix.</small>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+        
+        <div
+          class="progress-step progress-step-active"
+          data-title="Email"
+        ></div>
+        <div class="progress-step" data-title="Verification"></div>
+        <div class="progress-step" data-title="Contact"></div>
+        <div class="progress-step" data-title="Plan"></div>
+      </div>
+
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+        <div class="input-group">
+          <label  class="text-email" id="email" for="email">Email</label>
+          <input type="text" name="email" id="textemail"  oninput="verificarDatos()"/>
+          
+        </div>
+        <div class="input-group">
+          <label  class="text-password" for="password">Password</label>
+          <input type="password" name="password" id="password"  oninput="verificarDatos()">
+        </div>
+        <div class="">
+          <button href="#" type="button" onclick="VerificarEmail()"  style="display: none;" id="Next1" class="btn btn-next width-50 ml-auto">Next 1</button>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <label class="text-info" for="Code">Te enviamos un código al Correo que acabastes de anexar.¡Revisalo!</label>
+          <br>
+          <label class="text-code" id="" for="Code">Code</label>
+          <input type="text" name="Code" id="Code-text" />
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <button href="#" type="button" onclick="VerificarCode()" id="btnNext2" class="btn btn-next">Next2</button>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <label class="text-username" for="username">Username</label>
+          <input type="text" name="username" id="username" />
+        </div>
+        <div class="input-group">
+          <label class="text-Fullname" for="fullname">Fullname</label>
+          <input type="text" name="fullname" id="fullname" />
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <div class="input-group">
+          <div class="select">
+            <select name="format" id="format">
+               <option selected disabled>Seleccione su plan</option>
+               <option value="Es">Basic</option>
+               <option value="us">Trial</option>
+               <option value="us">Personal</option>
+               <option value="us">Duo</option>
+  
+            </select>
+         </div>
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">Previous</a>
+          <input type="submit" value="Submit" class="btn" />
+        </div>
+      </div>
+    </form>   
+  </body>
+  {% endblock %}

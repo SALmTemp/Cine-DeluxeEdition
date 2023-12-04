@@ -150,8 +150,10 @@ fetchDataFromServer(
     
             <p>${getDirectors(crew)}</p>
           </div>
-    
+          <br>
+          <button href="#" type="button" onclick="PlayNow()" id="" class="Play">Ver Ahora</button>
         </ul>
+        
     
       </div>
     
@@ -165,6 +167,7 @@ fetchDataFromServer(
     
     </div>
   `;
+
         // Añade los elementos de video al detalle de la película
         for (const { key, name }
             of filterVideos(videos)) {
