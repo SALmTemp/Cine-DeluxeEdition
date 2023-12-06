@@ -1,9 +1,44 @@
 :root {
-    --primary-color: rgb(179, 11, 11);
+    --primary: #e50914;
+    --grey: #222222;
+    --primary-color: #020228;
+    --secondary-color: #ff00e5;
+    --tertiary-color: #b535f6;
+    --btn-bg-color-gradient: linear-gradient( 45deg, #9b34ef 0%, #490cb0 20%, transparent 50%);
+    --btn-link-bg-color: #fff;
+    --btn-link-color: #000;
+    --card-bg-color: linear-gradient(0deg, transparent, #3b1e63);
+    --divider-bg-color: linear-gradient( 90deg, #5516ba, rgba(255, 0, 229, 0.5) 80%);
+    --nav-bg-color: rgba(0, 0, 0, 0.3);
+    --text-color: #fff;
+    --link-color: #9e86ff;
+    --form-bg-color: rgba(211, 211, 211, 0.06);
+    --form-field-bg-color: rgba(0, 0, 0, 0.2);
+    --form-field-border: 1px solid rgba(255, 255, 255, 0.7);
+    --form-field-placeholder: rgba(255, 255, 255, 0.7);
+    --form-field-error: rgb(255, 76, 76);
+    scroll-behavior: smooth;
+    --banner-background: #2f2851;
+    --radius-8: 8px;
 }
 
 body {
-    background: linear-gradient(to right, #000000, #000033, #330033);
+    background: linear-gradient(-45deg, #56125b, #0f0f10, #271e6e);
+    background-size: 300% 300%;
+    /* Ajusta el tamaño según sea necesario */
+    animation: degraddo 5s ease infinite alternate;
+}
+
+@keyframes degraddo {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 *,
@@ -144,23 +179,22 @@ select::-ms-expand {
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    background-color: #ff0000;
-    /* Color de fondo rojo */
-    color: #ffffff;
-    /* Color del texto blanco */
-    border-radius: 5px;
-    /* Bordes redondeados */
-    border: 2px solid #ff0000;
-    /* Borde del botón */
-    transition: background-color 0.3s ease, color 0.3s ease;
-    /* Transiciones suaves */
+    color: var(--text-color);
+    background-color: var(--tertiary-color);
+    border: none;
+    border-radius: 31.25rem;
+    cursor: pointer;
+    background-color: var(--btn-link-bg-color);
+    color: var(--btn-link-color);
+    animation: wiggle 2.2s linear infinite;
 }
 
 .sign-in-btn:hover {
-    background-color: #5b0b0b;
-    /* Cambio de color de fondo al pasar el ratón */
-    color: #ff0000;
-    /* Cambio de color del texto al pasar el ratón */
+    background-color: transparent;
+    background-position: 100%;
+    outline: 2px solid var(--secondary-color);
+    transform: scale(1.05);
+    color: white;
 }
 
 .header-wrapper {
@@ -191,6 +225,14 @@ input {
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
+    color: var(--text-color);
+    background: var(--form-field-bg-color);
+    border: var(--form-field-border);
+}
+
+.input:is(:focus, :valid) {
+    background: transparent;
+    padding: 16px 20px 0;
 }
 
 .width-50 {
@@ -286,6 +328,9 @@ input {
 .input-group {
     margin: 2rem 0;
 }
+
+
+/**footer**/
 
 @keyframes animate {
     from {

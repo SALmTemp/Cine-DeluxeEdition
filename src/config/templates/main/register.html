@@ -4,7 +4,7 @@
   <header>
     <div class="header-wrapper">
       <a href="indexregistromain">
-        <img src="{{ url_for('static', filename='assets/image/logo.svg') }}" alt="logo" />
+        <img src="{{ url_for('static', filename='assets/image/LogoMv3.png') }}" alt="logo" />
     </a>
       <a  href="/fronted/indexlogin" class="sign-in-btn">Sign In</a>
     </div>
@@ -12,7 +12,7 @@
     <form action="#" class="form">
       <img src="{{ url_for('static', filename='assets/image/dispositivos.png') }}" alt="" />
       <h1 class="text-center">Completa la configuración de tu cuenta</h1>
-      <small class="text-description">TVFlix está personalizado para ti. Crea una contraseña para comenzar a ver TVFlix.</small>
+      <small class="text-description">StreMovify está personalizado para ti. Crea una contraseña para comenzar a ver StreMovify.</small>
       <!-- Progress bar -->
       <div class="progressbar">
         <div class="progress" id="progress"></div>
@@ -69,22 +69,14 @@
       </div>
       <div class="form-step">
         <div class="input-group">
-          <div class="select">
-            <select name="format" id="format">
-               <option selected disabled>Seleccione su plan</option>
-               <option value="Es">Basic</option>
-               <option value="us">Trial</option>
-               <option value="us">Personal</option>
-               <option value="us">Duo</option>
-  
-            </select>
-         </div>
+
         </div>
         <div class="btns-group">
           <a href="#" class="btn btn-prev">Previous</a>
           <input type="submit" value="Submit" class="btn" />
         </div>
       </div>
-    </form>   
+    </form>
+       
   </body>
   {% endblock %}

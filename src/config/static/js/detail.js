@@ -150,8 +150,6 @@ fetchDataFromServer(
     
             <p>${getDirectors(crew)}</p>
           </div>
-          <br>
-          <button href="#" type="button" onclick="PlayNow()" id="" class="Play">Ver Ahora</button>
         </ul>
         
     
@@ -192,6 +190,7 @@ fetchDataFromServer(
         );
     }
 );
+
 // Función para agregar películas sugeridas a la página
 const addSuggestedMovies = function({ results: movieList }, title) {
     const movieListElem = document.createElement("section");
