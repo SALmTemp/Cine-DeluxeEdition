@@ -16,7 +16,7 @@
       <!-- Progress bar -->
       <div class="progressbar">
         <div class="progress" id="progress"></div>
-        
+
         <div
           class="progress-step progress-step-active"
           data-title="Email"
@@ -28,22 +28,25 @@
 
       <!-- Steps -->
       <div class="form-step form-step-active">
-        <div class="input-group">
+        <label class="text-info" id="label-Step" for="Code"></label>
+        <div class="input-group">   
           <label  class="text-email" id="email" for="email">Email</label>
           <input type="text" name="email" id="textemail"  oninput="verificarDatos()"/>
-          
+
         </div>
         <div class="input-group">
           <label  class="text-password" for="password">Password</label>
           <input type="password" name="password" id="password"  oninput="verificarDatos()">
         </div>
+       
         <div class="">
           <button href="#" type="button" onclick="VerificarEmail()"  style="display: none;" id="Next1" class="btn btn-next width-50 ml-auto">Next 1</button>
         </div>
       </div>
+      <!--CODE-->
       <div class="form-step">
         <div class="input-group">
-          <label class="text-info" for="Code">Te enviamos un código al Correo que acabastes de anexar.¡Revisalo!</label>
+          <label class="text-info" id="label-content" for="Code"></label>
           <br>
           <label class="text-code" id="" for="Code">Code</label>
           <input type="text" name="Code" id="Code-text" />
@@ -53,6 +56,7 @@
           <button href="#" type="button" onclick="VerificarCode()" id="btnNext2" class="btn btn-next">Next2</button>
         </div>
       </div>
+      <!--Basic FORMS-->
       <div class="form-step">
         <div class="input-group">
           <label class="text-username" for="username">Username</label>
@@ -69,14 +73,22 @@
       </div>
       <div class="form-step">
         <div class="input-group">
+          <div class="select">
+            <select name="format" id="format">
+               <option selected disabled>Seleccione su plan</option>
+               <option value="Es">Basic</option>
+               <option value="us">Trial</option>
+               <option value="us">Personal</option>
+               <option value="us">Duo</option>
 
+            </select>
+         </div>
         </div>
         <div class="btns-group">
           <a href="#" class="btn btn-prev">Previous</a>
           <input type="submit" value="Submit" class="btn" />
         </div>
       </div>
-    </form>
-       
+    </form>   
   </body>
   {% endblock %}

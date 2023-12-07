@@ -228,6 +228,7 @@ input {
     color: var(--text-color);
     background: var(--form-field-bg-color);
     border: var(--form-field-border);
+    background-color: transparent
 }
 
 .input:is(:focus, :valid) {
@@ -313,6 +314,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 0.35rem;
     padding: 1.5rem;
+    background-color: var(--form-bg-color);
 }
 
 .form-step {
@@ -362,6 +364,7 @@ input {
     border-radius: 0.25rem;
     cursor: pointer;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .btn:hover {

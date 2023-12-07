@@ -24,8 +24,8 @@ def forgotpassword():
     fullcorreo = request.json['fullcorreo']
 
     # Check if the user has exceeded the request limit
-    now = datetime.now(timezone.utc)  # Convert to offset-aware datetime in UTC
-    elapsed_time = timedelta(minutes=5)  # Valor predeterminado de 5 minutos
+    now = datetime.now(timezone.utc)
+    elapsed_time = timedelta(minutes=5)
     request_count = 0
 
     if 'last_request_time' in session and 'request_count' in session:
@@ -51,14 +51,102 @@ def forgotpassword():
     # Guarda el código en la sesión
     session['verification_code'] = code
 
-    # Envía un correo electrónico al usuario con el código
-    sender_email = 'bytvflix@gmail.com'
-    sender_password = 'eawkyimzkehbpgbm'
+    # Crea el mensaje de correo electrónico con diseño personalizado
+    subject = 'Stremovify Verification Code'
+
+    # Logo y nombre ficticio
+    logo_url = 'https://example.com/logo.png'
+    my_name = 'StreMovify'
+
+    # Diseño degradado en azul y morado
+    body = f"""
+        <html>
+            <head>
+                <style>
+                    body {{
+                        font-family: 'Arial', sans-serif;
+                        text-align: center;
+                        margin: 0;
+                        padding: 0;
+                        background: linear-gradient(to right, #0a0a0a, #1f1735);
+                    }}
+                    .container {{
+                        width: 80%;
+                        margin: 0 auto;
+                        background-color: rgba(255, 255, 255, 0.9);
+                        padding: 20px;
+                        border-radius: 10px;
+                        margin-top: 50px;
+                        text-align: center;
+                    }}
+                    .header {{
+                        text-align: center;
+                    }}
+                    .header img {{
+                        max-width: 100px;
+                    }}
+                    .content {{
+                        padding: 20px;
+                        color: #2f084d;
+                        text-align: center;
+                    }}
+                    h2 {{
+                        color: #4d43d6;
+                    }}
+                    p {{
+                        line-height: 1.6;
+                    }}
+                    strong {{
+                        color: #e50914;
+                    }}
+                    .footer {{
+                        text-align: center;
+                        color: #555;
+                        margin-top: 20px;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <img src="{logo_url}" alt="Stremovify Logo">
+                        <h2>{subject}</h2>
+                    </div>
+                    <div class="content">
+                        <p>Dear Stremovify User,</p>
+                         <p>¡Hola!
+                         ¡Te damos la bienvenida a Netflix! Nos encanta que estés aquí. Completa la suscripción para empezar a ver las series y películas de las que todo el mundo habla. Los planes comienzan desde $ 16.900 al mes.</p>
+                         <p>¿Todavía tienes dudas sobre cómo funciona Netflix?
+                         Entretenimiento ilimitado.Ve todo lo que quieras a un precio accesible.Cancela cuando quieras.Sin contratos ni compromisos.Recomendaciones exclusivas para ti.Encuentra siempre una serie o película para ver según tus gustos
+                        <p>Esperamos que este correo electrónico te encuentre bien. Como parte de nuestro compromiso con la seguridad, hemos iniciado un proceso de verificación para su cuenta..</p>
+                        <p>Your verification code is: <strong>{code}</strong></p>
+                        <p>Utilice este código para completar el proceso de verificación. Si no solicitó este código, ignore este correo electrónico.</p>
+                        <p>Te enviamos este email porque creaste una cuenta de Netflix, pero no completaste la suscripción. Si no quieres recibir estos emails.</p>
+                        <p>For further assistance or information, feel free to reach out to our support team.</p>
+                        
+                    </div>
+                    <div class="footer">
+                        <p>Best regards,<br>{my_name}</p>
+                    </div>
+                </div>
+            </body>
+        </html>
+    """
+
+    # Envía el correo electrónico al usuario con el código
+    sender_email = 'stremovify@gmail.com'
+    sender_password = 'ovkblgkretkotakw'
     receiver_email = fullcorreo
-    message = f'Subject: Verification Code\n\nYour verification code is: {code}'
+
+    msg = MIMEMultipart()
+    msg.attach(MIMEText(body, 'html'))
+    msg['Subject'] = subject
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(sender_email, sender_password)
-        server.sendmail(sender_email, receiver_email, message)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
 
     # Reinicia el contador de solicitudes si ha pasado el tiempo
     if elapsed_time >= timedelta(minutes=5 + (request_count - 1)):
@@ -69,7 +157,6 @@ def forgotpassword():
     session['last_request_time'] = now
 
     return jsonify({'message': 'Verification code sent.'})
-
 
 @routes_register.route('/verificarcode', methods=['POST'])
 def verificarcode():
