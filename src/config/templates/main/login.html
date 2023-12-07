@@ -10,14 +10,14 @@
         <h2>Sign In</h2>
         <form action="">
             <div class="form-control">
-                <input  type="email" name="email" type="text" required>
+                <input id="email-input"  type="text" required>
                 <label for="Email">Email or phone number</label>
             </div>
             <div class="form-control">
-                <input type="password" required>
+                <input type="password" id="password-input" required>
                 <label for="password">Password</label>
             </div>
-            <button type="submit">Sign In</button>
+            <button type="button" onclick="Login()">Sign In</button>
             <div class="form-help">
                 <div class="remember-me">
                     <input type="checkbox" id="remember-me">

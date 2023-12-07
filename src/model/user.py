@@ -1,4 +1,5 @@
 from config.db import db, app, ma
+from datetime import datetime, timedelta
 
 class User(db.Model):
     __tablename__ = "tblusers"
@@ -34,6 +35,38 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+# Verificar si ya hay registros en la tabla
+    if User.query.count() == 0:
+        # Crear registros de usuarios
+        user1 = User(
+            id_subcripcion=1,
+            id_cuenta=1,
+            id_estado=1,
+            id_experiencia=1,
+            id_perfilescreados=1,
+            id_usersroles=1,
+            username='SALM',
+            email='null',
+            password='SALMñ',
+            fullname='SALM',
+            registration=datetime.now()
+        )
+        user2 = User(
+            id_subcripcion=2,
+            id_cuenta=2,
+            id_estado=2,
+            id_experiencia=2,
+            id_perfilescreados=2,
+            id_usersroles=2,
+            username='operador_salm',
+            email='stremovify@gmail.com',
+            password='Operadorñ',
+            fullname='Operador',
+            registration=datetime.now()
+        )
+        
+        db.session.add_all([user1, user2])
+        db.session.commit()
 class UserSchema(ma.Schema):
     class Meta:
         fields = ('id_subcripcion', 'id_cuenta', 'id_estado', 'id_experiencia', 'id_perfilescreados','id_usersroles','username','email','password','fullname','registration')

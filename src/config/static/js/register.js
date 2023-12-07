@@ -96,6 +96,10 @@ function validarCorreo(correo) {
     return correo.includes('@') && correo.includes('.com');
 }
 
+/**
+ * ENVIO DE CORREO STEP
+ */
+
 function VerificarEmail() {
     // Obtener el correo electrónico ingresado por el usuario
     const correo = document.getElementById('textemail').value;
@@ -242,6 +246,9 @@ function avanzarAlSiguienteFormulario() {
     puedeAvanzar = false;
 }
 
+/**
+ * VERIFICACIÓN DE CÓDIGO
+ */
 
 function VerificarCode() {
     const digit1 = document.getElementById('Code-text');
@@ -252,13 +259,116 @@ function VerificarCode() {
     axios.post('verificarcode', {
             verification_code: digit1.value,
         })
-        .then(function(response) {
-            // Verificación exitosa
-            console.log('Verificación exitosa');
+        .then((response) => {
+            console.log(response.data);
+
+            // Verificar si la solicitud fue exitosa
+            if (response.status === 200) {
+                // Mostrar un mensaje al usuario indicando que se envió el código
+                mostrarMensaje('Fue correcto. Continuando.');
+                // Habilitar el botón de avance
+            } else {
+                // Manejar otros casos según tu lógica
+                mostrarMensaje('Error. Inténtelo nuevamente.');
+                // Restablecer la bandera para bloquear el avance
+                // Puedes agregar más acciones aquí si es necesario
+            }
         })
-        .catch(function(error) {
-            // Verificación fallida
-            console.error('Verificación fallida', error);
-            // Puedes agregar acciones adicionales para la verificación fallida aquí
+        .catch((error) => {
+            console.error(error);
+
+            // Manejar errores según tu lógica
+            if (error.response && error.response.status === 401) {
+                // Error 429 - Too Many Requests
+                mostrarMensajeError('No autorizado. Por favor, vuelva a internarlo.');
+                // Restablecer la bandera para bloquear el avance
+                formStepsNum--;
+                updateFormSteps();
+                updateProgressbar();
+                // Puedes agregar más acciones aquí si es necesario
+            } else {
+                mostrarMensajeError('Error . Inténtelo nuevamente.');
+                // Restablecer la bandera para bloquear el avance
+                // Puedes agregar más acciones aquí si es necesario
+            }
         });
+}
+
+function mostrarMensajeError(mensaje) {
+    // Mostrar el mensaje de error en el elemento con id 'label-Step'
+    const mensajeErrorElement = document.getElementById('label-Code');
+
+    // Verificar si el elemento existe antes de actualizar su contenido
+    if (mensajeErrorElement) {
+        mensajeErrorElement.textContent = mensaje;
+        // Establecer el color del texto a rojo
+        mensajeErrorElement.style.color = 'red';
+    }
+}
+
+
+function mostrarMensaje(mensaje) {
+    // Mostrar el mensaje en algún elemento HTML
+    const mensajeElement = document.getElementById('mensaje');
+
+    // Verificar si el elemento existe antes de actualizar su contenido
+    if (mensajeElement) {
+        mensajeElement.textContent = mensaje;
+    }
+}
+
+
+
+function mostrarMensaje(mensaje) {
+    // Mostrar el mensaje en algún elemento HTML
+    const mensajeElement = document.getElementById('mensaje');
+
+    // Verificar si el elemento existe antes de actualizar su contenido
+    if (mensajeElement) {
+        mensajeElement.textContent = mensaje;
+    }
+}
+
+
+function mostrarMensaje(mensaje) {
+    // Mostrar el mensaje en algún elemento HTML
+    const mensajeElement = document.getElementById('mensaje');
+
+    // Verificar si el elemento existe antes de actualizar su contenido
+    if (mensajeElement) {
+        mensajeElement.textContent = mensaje;
+
+        // Avanzar al siguiente formulario solo si la bandera permite el avance
+        if (puedeAvanzar) {
+            avanzarAlSiguienteFormulario();
+        }
+    }
+}
+
+function avanzarAlSiguienteFormulario() {
+    // Lógica para avanzar al siguiente formulario
+    // Puedes agregar más acciones aquí si es necesario
+
+    // Ejemplo: Mostrar el siguiente formulario o realizar otras acciones
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+    // Restablecer la bandera para futuras verificaciones
+    puedeAvanzar = false;
+}
+
+
+function mostrarMensaje(mensaje) {
+    // Mostrar el mensaje en algún elemento HTML
+    const mensajeElement = document.getElementById('mensaje');
+
+    // Verificar si el elemento existe antes de actualizar su contenido
+    if (mensajeElement) {
+        mensajeElement.textContent = mensaje;
+
+        // Avanzar al siguiente formulario solo si la bandera permite el avance
+        if (puedeAvanzar) {
+            avanzarAlSiguienteFormulario();
+        }
+    }
 }
