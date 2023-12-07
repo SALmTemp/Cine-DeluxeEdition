@@ -1,7 +1,7 @@
 # Cine-DeluxeEdition
 Design by MondongoTeam
 
-<h1 align="center" id="title">Tvflix</h1>
+<h1 align="center" id="title">StreMovify</h1>
 
 <p align="center"><img src="https://i.ytimg.com/vi/_DaH6PIn0Ak/maxresdefault.jpg" alt="project-image"></p>
 
