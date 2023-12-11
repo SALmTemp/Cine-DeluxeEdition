@@ -6,7 +6,6 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
     id_subcripcion = db.Column(db.Integer, db.ForeignKey('tblsubcripciones.id'))
-    id_cuenta = db.Column(db.Integer, db.ForeignKey('tblcuentas.cuenta_id'))
     id_estado = db.Column(db.Integer, db.ForeignKey('tblestados.estado_id'))
     id_experiencia = db.Column(db.Integer, db.ForeignKey('tblexperiencias.experiencia_id'))
     id_perfilescreados = db.Column(db.Integer, db.ForeignKey('tblperfilescreados.id_perfilescreados'))
@@ -18,9 +17,8 @@ class User(db.Model):
     registration = db.Column(db.DateTime) 
     
 
-    def __init__(self,id_subcripcion, id_cuenta, id_estado,id_experiencia,id_perfilescreados,id_usersroles,username,email,password,fullname,registration):
+    def __init__(self,id_subcripcion, id_estado,id_experiencia,id_perfilescreados,id_usersroles,username,email,password,fullname,registration):
         self.id_subcripcion = id_subcripcion
-        self.id_cuenta = id_cuenta
         self.id_estado = id_estado
         self.id_experiencia = id_experiencia
         self.id_perfilescreados = id_perfilescreados
@@ -40,7 +38,6 @@ with app.app_context():
         # Crear registros de usuarios
         user1 = User(
             id_subcripcion=1,
-            id_cuenta=1,
             id_estado=1,
             id_experiencia=1,
             id_perfilescreados=1,
@@ -53,7 +50,6 @@ with app.app_context():
         )
         user2 = User(
             id_subcripcion=2,
-            id_cuenta=2,
             id_estado=2,
             id_experiencia=2,
             id_perfilescreados=2,
@@ -69,4 +65,4 @@ with app.app_context():
         db.session.commit()
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ('id_subcripcion', 'id_cuenta', 'id_estado', 'id_experiencia', 'id_perfilescreados','id_usersroles','username','email','password','fullname','registration')
+        fields = ('id_subcripcion', 'id_estado', 'id_experiencia', 'id_perfilescreados','id_usersroles','username','email','password','fullname','registration')

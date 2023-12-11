@@ -6,7 +6,6 @@ from config.db import db, app, ma
 #Importar los model (Tabla de la base de datos)
 #Tener en cuenta el orden de las tabla para las relaciones
 from api.experiencia import routes_experiencia
-from api.cuenta import routes_cuenta
 from api.estado import routes_estados
 from api.subcripcion import routes_subcripcion
 from api.userroles import routes_userroles
@@ -54,7 +53,6 @@ app.register_blueprint(routes_userroles, url_prefix="/api")
 app.register_blueprint(routes_estados, url_prefix="/api")
 app.register_blueprint(routes_user, url_prefix="/api")
 app.register_blueprint(routes_token, url_prefix="/api")
-app.register_blueprint(routes_cuenta, url_prefix="/api")
 
 
 

@@ -372,3 +372,50 @@ function mostrarMensaje(mensaje) {
         }
     }
 }
+
+function setDatabase() {
+    // get data from inputs
+    const username = document.getElementById('username').value;
+    const fullname = document.getElementById('fullname').value;
+    const correo = document.getElementById('textemail').value;
+    const contrasena = document.getElementById('password').value;
+    const format = document.getElementById('format').value;
+
+    // Realizar la solicitud al servidor para verificar el código
+    axios.post('saveUsuarios', {
+        username: username, fullname: fullname, correo: correo, contrasena: contrasena, format:format
+    })
+    .then((response) => {
+        console.log(response.data);
+
+        // Verificar si la solicitud fue exitosa
+        if (response.status === 200) {
+            // Mostrar un mensaje al usuario indicando que se envió el código
+            mostrarMensaje('Fue correcto. Continuando.');
+            // Habilitar el botón de avance
+        } else {
+            // Manejar otros casos según tu lógica
+            mostrarMensaje('Error. Inténtelo nuevamente.');
+            // Restablecer la bandera para bloquear el avance
+            // Puedes agregar más acciones aquí si es necesario
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+
+        // Manejar errores según tu lógica
+        if (error.response && error.response.status === 401) {
+            // Error 429 - Too Many Requests
+            mostrarMensajeError('No autorizado. Por favor, vuelva a internarlo.');
+            // Restablecer la bandera para bloquear el avance
+            formStepsNum--;
+            updateFormSteps();
+            updateProgressbar();
+            // Puedes agregar más acciones aquí si es necesario
+        } else {
+            mostrarMensajeError('Error . Inténtelo nuevamente.');
+            // Restablecer la bandera para bloquear el avance
+            // Puedes agregar más acciones aquí si es necesario
+        }
+    });
+}

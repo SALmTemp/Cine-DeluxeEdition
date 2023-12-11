@@ -8,8 +8,13 @@ import os
 import ssl
 from email.message import EmailMessage
 from flask import Blueprint , render_template,request,jsonify,session
-
-from model.user import User, UserSchema
+from sqlalchemy.exc import IntegrityError
+from model.user import User, UserSchema 
+from model.subcripcion import Subcripcion
+from model.estado import Estados
+from model.experiencia import Experiencia
+from model.perfilcreado import PerfilesCreados
+from model.userroles import UserRoles
 
 routes_register = Blueprint("routes_register",__name__)
 
@@ -176,3 +181,31 @@ def verificarcode():
         status = 401
         return jsonify(response_body), status
     
+#Registrar
+@routes_register.route('/saveUsuarios', methods=['POST'])
+def saveUsuariosrg():
+    try:
+        username = request.json['username']
+        fullname = request.json['fullname']
+        correo = request.json['correo']
+        contrasena = request.json['contrasena']
+        format = request.json['format']
+        
+        print('\n',format, username, fullname, correo, contrasena,'\n')
+        # Crea una nueva instancia de User
+        new_user = User( id_subcripcion=int(format), id_estado=2, id_experiencia=2, id_perfilescreados=2, id_usersroles=3, username=username, email=correo, password=contrasena, fullname=fullname, registration=datetime.now())
+
+        # Agrega las instancias a la sesión y realiza la transacción
+        db.session.add(new_user)
+        db.session.commit()
+        
+        # Si las credenciales son válidas, inicie sesión al usuario
+        return {
+            "status": 200,
+            "message": "Inicio de sesión exitoso",
+            "nombre_usuario": username  # Incluir el nombre del administrador en la respuesta
+        }
+        
+    except IntegrityError as e:
+        db.session.rollback()
+        return jsonify({"error": "Error de integridad de la llave foránea"}), 400
