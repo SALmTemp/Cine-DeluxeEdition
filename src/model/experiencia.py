@@ -4,8 +4,8 @@ class Experiencia(db.Model):
     __tablename__ = "tblexperiencias"
 
     experiencia_id = db.Column(db.Integer, primary_key=True)
-    nivel = db.Column(db.Integer)
-    experiencia = db.Column(db.Integer)
+    nivel = db.Column(db.Integer, nullable=False)
+    experiencia = db.Column(db.Integer,nullable=False)
     
 
     def __init__(self, nivel, experiencia):

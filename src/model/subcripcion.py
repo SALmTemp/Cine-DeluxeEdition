@@ -24,11 +24,9 @@ with app.app_context():
     if Subcripcion.query.count() == 0:
         # Crear registros de suscripciones
         subcripcion1 = Subcripcion(1, 'basic', 1)
-        subcripcion2 = Subcripcion(2, 'Trial', 1)
-        subcripcion3 = Subcripcion(3, 'Personal', 1)
-        subcripcion4 = Subcripcion(4, 'duo', 2)
+        subcripcion2 = Subcripcion(2, 'basic', 1)
         
-        db.session.add_all([subcripcion1, subcripcion2, subcripcion3, subcripcion4])
+        db.session.add_all([subcripcion1, subcripcion2])
         db.session.commit()
 
 class SubcripcionSchema(ma.Schema):

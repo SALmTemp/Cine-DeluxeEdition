@@ -98,15 +98,21 @@ fetchDataFromServer(
 
         // Estructura de la información de la película dentro del elemento creado(Igual al ejemplo de william con la pokeAPI)
         movieDetail.innerHTML = `
+       
     <div class="backdrop-image" style="background-image: url('${imageBaseURL}${
       "w1280" || "original"
     }${backdrop_path || poster_path}')"></div>
     
     <figure class="poster-box movie-poster">
+    
       <img src="${imageBaseURL}w342${poster_path}" alt="${title} poster" class="img-cover">
     </figure>
+    <button id="Play" class="Play" onclick="" style="display: none;"> 
+    <i class="fas fa-circle-play"></i> 
+</button>
+   
+    <div id="Loading" class="detail-box">
     
-    <div class="detail-box">
     
       <div class="detail-content">
         <h1 class="heading">${title}</h1>
@@ -150,11 +156,14 @@ fetchDataFromServer(
     
             <p>${getDirectors(crew)}</p>
           </div>
-        </ul>
-        
-    
+
+          <button href="/fronted/indexlogin" class="sign-in-btn">Watch Preview</button>
+          <div id="alert-content" class="alert-content" style="display: none;">
+            <h4>Oops! The movie is not available yet, we will let you know. We hope you enjoy it soon!</h1>
+            </div>
+       
+          
       </div>
-    
       <div class="title-wrapper">
         <h3 class="title-large">Trailers and Clips</h3>
       </div>
@@ -165,6 +174,123 @@ fetchDataFromServer(
     
     </div>
   `;
+
+
+
+        /***
+         * Método del Axios para Cargar la pelicula, de lo contrario una carga y un mensaje
+         */
+        function checkMovieIdAndUpdateButton() {
+            const movieId = window.localStorage.getItem("movieId");
+            const button = document.getElementById("Play");
+            const alertcontent = document.getElementById("alert-content");
+
+            if (movieId && button && alertcontent) {
+                try {
+                    axios.post('/fronted/getmovieurl', { moviid: movieId })
+                        .then(response => {
+                            const { status, url, exists } = response.data;
+
+                            if (status === 'success' && url && exists) {
+                                // Si el movieId existe en la base de datos, muestra el botón
+                                showButton(button, alertcontent);
+                            } else {
+                                // Si el movieId no existe, oculta el botón
+                                hideButton(button);
+                            }
+                        })
+                        .catch(error => {
+                            // Si hay un error, oculta el botón
+                            hideButton(button, alertcontent);
+                            console.error('Error al verificar el movieId', error);
+                        });
+                } catch (error) {
+                    // Si hay un error, oculta el botón
+                    hideButton(button, alertcontent);
+                    // console.error('Error al verificar el movieId', error);
+                }
+            } else if (button && alertcontent) {
+                // Si no hay un movieId en el localStorage, oculta el botón
+                hideButton(button, alertcontent);
+            }
+
+            // Obtener el tipo de conexión
+            const connectionType = navigator.connection.effectiveType || '4g';
+
+            // Ajustar el tiempo de espera según el tipo de conexión
+            let timeoutDuration;
+
+            switch (connectionType) {
+                case 'slow-2g':
+                case '2g':
+                    timeoutDuration = 5000; // 5 segundos para conexiones 2G
+                    break;
+                case '3g':
+                    timeoutDuration = 3000; // 3 segundos para conexiones 3G
+                    break;
+                case '4g':
+                case '5g':
+                    timeoutDuration = 2000; // 2 segundos para conexiones 4G y 5G
+                    break;
+                default:
+                    timeoutDuration = 100; // Valor predeterminado
+            }
+
+            // Vuelve a llamar a la función en el próximo ciclo de animación
+            setTimeout(() => requestAnimationFrame(checkMovieIdAndUpdateButton), timeoutDuration);
+        }
+
+        // Llama a la función por primera vez
+        checkMovieIdAndUpdateButton();
+
+
+
+        // Función para mostrar el botón
+        function showButton(button, alertcontent) {
+            button.style.display = "block";
+            alertcontent.style.display = "none";
+
+            // console.log('Mostrar botón');<---TESTEADO
+
+            // Agrega un evento de clic al botón
+            button.addEventListener("click", function() {
+                const movieId = window.localStorage.getItem("movieId");
+
+                // Llama a la función para obtener la URL de la película desde el servidor
+                getMovieUrl(movieId);
+            });
+        }
+
+        // Función para ocultar el botón
+        function hideButton(button, alertcontent) {
+            button.style.display = "none";
+            alertcontent.style.display = "block";
+        }
+        // console.log('Ocultar botón');<---TESTEADO
+
+        // Función para obtener la URL de la película desde el servidor
+        function getMovieUrl(movieId) {
+            // Realiza la solicitud al servidor para obtener la URL
+            axios.post('/fronted/getmovieurl', { moviid: movieId })
+                .then(function(response) {
+                    // Si la respuesta del servidor es exitosa, obtenemos la URL
+                    const { url } = response.data;
+
+                    if (url) {
+                        // Abre una nueva pestaña con la URL
+                        window.open(url, '_blank');
+                    } else {
+                        // Log de error en la consola
+                        console.error('No se encontró la URL de la película');
+                    }
+                })
+                .catch(function(error) {
+                    // Manejar errores de la solicitud al servidor
+                    console.error('Error al obtener la URL de la película', error);
+                });
+        }
+
+
 
         // Añade los elementos de video al detalle de la película
         for (const { key, name }

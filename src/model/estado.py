@@ -9,14 +9,12 @@ class Estados(db.Model):
     is_suspended_account = db.Column(db.Boolean, default=False)
     is_delete_account = db.Column(db.Boolean, default=False)
     last_active = db.Column(db.DateTime, nullable=False)
-    notifications = db.Column(db.Text)
 
-    def __init__(self, is_active, is_suspended_account, is_delete_account, last_active, notifications):
+    def __init__(self, is_active, is_suspended_account, is_delete_account, last_active):
         self.is_active = is_active
         self.is_suspended_account = is_suspended_account
         self.is_delete_account = is_delete_account
         self.last_active = last_active
-        self.notifications = notifications
 
 with app.app_context():
     db.create_all()
@@ -29,14 +27,12 @@ with app.app_context():
             is_suspended_account=False,
             is_delete_account=False,
             last_active=datetime.now(),
-            notifications="Notificación 1"
         )
         estado2 = Estados(
             is_active=True,
             is_suspended_account=False,
             is_delete_account=False,
             last_active=datetime.now(),
-            notifications="Notificación 2"
         )
 
         db.session.add_all([estado1, estado2])
@@ -44,4 +40,4 @@ with app.app_context():
 
 class EstadosSchema(ma.Schema):
     class Meta:
-        fields = ('is_active', 'is_suspended_account', 'is_delete_account', 'last_active', 'notifications')
+        fields = ('is_active', 'is_suspended_account', 'is_delete_account', 'last_active')

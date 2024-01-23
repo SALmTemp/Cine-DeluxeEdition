@@ -1,17 +1,20 @@
 from config.db import db, app, ma
 from sqlalchemy import Numeric
+from datetime import datetime, timedelta
 
 class Cuentas(db.Model):
     __tablename__ = "tblcuentas"
 
     cuenta_id = db.Column(db.Integer, primary_key=True)
-    saldo = db.Column(Numeric(precision=18, scale=2))  # Ajusta precision y scale según tus necesidades
-    descripcion = db.Column(db.Text)
+    saldo = db.Column(Numeric(precision=18, scale=2), default=0.0)
+    num_cuenta = db.Column(db.Integer, unique=True, nullable=False)
+    registration = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     
 
-    def __init__(self, saldo, descripcion):
+    def __init__(self, num_cuenta, registration, saldo=0.0):
         self.saldo = saldo
-        self.descripcion = descripcion
+        self.num_cuenta = num_cuenta
+        self.registration = registration
 
 with app.app_context():
     db.create_all()
@@ -19,14 +22,13 @@ with app.app_context():
     # Verificar si ya hay registros en la tabla
     if Cuentas.query.count() == 0:
         # Crear registros de cuentas
-        cuenta1 = Cuentas(0.0, 'Cuenta Ahorros')  # Puedes ajustar el saldo según tus necesidades
-        cuenta2 = Cuentas(0.0, 'Cuenta Corriente')
-        cuenta3 = Cuentas(0.0, 'Cuenta Chequera')
-        cuenta4 = Cuentas(0.0, 'Cuenta Nomina')
+        cuenta1 = Cuentas(saldo=0.0, num_cuenta=1000, registration=datetime.utcnow())
+        cuenta2 = Cuentas(saldo=0.0, num_cuenta=1001, registration=datetime.utcnow())
         
-        db.session.add_all([cuenta1, cuenta2, cuenta3, cuenta4])
+        
+        db.session.add_all([cuenta1, cuenta2])
         db.session.commit()
 
 class CuentasSchema(ma.Schema):
     class Meta:
-        fields = ('saldo', 'descripcion')
+        fields = ('saldo','num_cuenta','registration')

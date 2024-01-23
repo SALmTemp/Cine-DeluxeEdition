@@ -23,6 +23,7 @@
           <img src="{{ url_for('static', filename='assets/image/menu.png') }}" width="24" height="24" alt="open menu" class="menu"  />
           <img src="{{ url_for('static', filename='assets/image/menu-close.png') }}" width="24" height="24"alt="close menu" class="close" />
       </button>
+
       <!--PROFILE-->
       <div class="profile-dropdown">
         <div class="profile-dropdown-btn" onclick="toggle()">
@@ -35,16 +36,16 @@
           </span>
         </div> 
         <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-file-invoice"></i> Iniciar Sesión
-            </a>
-        </li>
-          <li class="profile-dropdown-list-item">
-            <a href="/fronted/indexregistromain">
-              <i class="fa-regular fa-address-card"></i> Registrarme
-            </a>
-        </li>
+            <li class="profile-dropdown-list-item">
+                <a href="/fronted/indexregistromain">
+                    <i class="fa-regular fa-envelope"></i> Register
+                </a>
+            </li>
+            <li class="profile-dropdown-list-item">
+                <a href="#">
+                    <i class="fa-regular fa-envelope"></i> Login
+                </a>
+            </li>
             <li class="profile-dropdown-list-item">
                 <a href="indexprofile">
                     <i class="fa-regular fa-user"></i> Edit Profile
@@ -100,6 +101,7 @@
           //hide dropdown list if user clicks outside dropdown button
           if (!btn.contains(e.target)) profileDropdownList.classList.remove('active');
       });
+      
 </script>
 </body>
 

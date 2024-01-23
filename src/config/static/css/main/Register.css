@@ -108,9 +108,9 @@ label {
 }
 
 header {
-    position: fixed;
+    position: absolute;
     width: 100%;
-    background: rgba(0, 0, 0, 0.75);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent);
     padding: 20px;
     display: flex;
     border-radius: 10px;
@@ -118,10 +118,12 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    top: 0px;
+    top: 0;
+    margin-bottom: 30px;
 }
 
-select {
+
+/* select {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
@@ -168,6 +170,76 @@ select::-ms-expand {
 
 .select:hover::after {
     color: #b43623;
+} */
+
+
+/* PLANES */
+
+.col-2 label {
+    display: block;
+    padding: 2px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9d00ff;
+    cursor: pointer;
+    border: 1px solid #bfbfbf76;
+    border-radius: 10px;
+    border-style: groove;
+}
+
+.col-2 label span {
+    flex: 1;
+    margin-left: -15px auto;
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.col-2 label:hover {
+    transform: scale(1.00);
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.col-2 label span small {
+    font-size: 10px;
+}
+
+.col-2 input[type="radio"]:checked+span {
+    color: #ff004f;
+    font-weight: bold;
+}
+
+.col-2 input[type="radio"]:checked+span::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* background-color: #ff004f; */
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.col-2 h2 {
+    color: #9d00ff;
+    /* padding: 15px;
+    margin: 15px; */
+    display: block;
+}
+
+.col-2 img {
+    height: 15px;
+    width: 15px;
 }
 
 
@@ -306,11 +378,84 @@ input {
 }
 
 
+/**LOADER**/
+
+.loader {
+    width: 320px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    position: relative;
+    padding: 1px;
+    text-align: center;
+    align-items: center;
+    margin-left: -25px;
+    display: flex;
+    margin-top: -25px;
+    justify-content: space-between;
+    display: none;
+}
+
+.loader:before {
+    content: '';
+    border: 1px solid #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loader .loaderBar {
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    width: 0;
+    animation: borealisBar 2s linear infinite;
+    text-align: center;
+    align-items: center;
+}
+
+@keyframes borealisBar {
+    0% {
+        left: 0%;
+        right: 100%;
+        width: 0%;
+    }
+    10% {
+        left: 0%;
+        right: 75%;
+        width: 25%;
+    }
+    90% {
+        right: 0%;
+        left: 75%;
+        width: 25%;
+    }
+    100% {
+        left: 100%;
+        right: 0%;
+        width: 0%;
+    }
+}
+
+
 /* Form */
 
 .form {
+    position: absolute;
     width: clamp(320px, 30%, 430px);
-    margin: 0 auto;
+    margin: 80px auto 10px;
+    margin-top: 70px;
+    justify-content: center;
     border: 1px solid #ccc;
     border-radius: 0.35rem;
     padding: 1.5rem;
@@ -332,7 +477,90 @@ input {
 }
 
 
+/**OTP**/
+
+.container-OTP {
+    display: flex;
+    margin: 2rem 0 4rem;
+    position: relative;
+    justify-content: space-between;
+}
+
+.num {
+    color: #fff;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    outline: none;
+    padding: 1rem 1rem;
+    margin: 0 1rem;
+    font-size: 0.7rem;
+    border: 1px solid rgba(255, 255, 255, .3);
+    border-radius: .5rem;
+    color: rgb(255, 255, 255);
+}
+
+#IntroduceCodigo {
+    font-weight: bold;
+    margin: 10px;
+}
+
+#label-Code {
+    margin: -30px 30px 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.num:focus,
+.num:valid {
+    box-shadow: 0 0 .5rem rgba(87, 6, 107, 0.5), inset 0 0 .5rem rgba(255, 255, 255, 0.5);
+    border-color: rgba(128, 0, 255, 0.5);
+}
+
+
 /**footer**/
+
+.footer {
+    width: 100%;
+    margin: -70rem auto;
+    overflow: auto;
+    margin-top: 30px;
+    position: relative;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.413));
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+    padding: 50px;
+}
+
+.footer,
+.footer a {
+    color: #999999;
+    font-size: 0.8rem;
+}
+
+.footer p {
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.footer .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    grid-gap: 0.1rem;
+    text-align: center;
+}
+
+.footer li {
+    line-height: 2.4;
+}
 
 @keyframes animate {
     from {
@@ -369,4 +597,149 @@ input {
 
 .btn:hover {
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
+}
+
+#label-Step-email {
+    font-size: 11px;
+    text-align: start;
+    justify-content: start;
+    position: absolute;
+    margin: 5px auto;
+    padding: 1px;
+}
+
+#label-Step-username {
+    font-size: 11px;
+    text-align: start;
+    justify-content: start;
+    position: absolute;
+    margin: 5px auto;
+    padding: 1px;
+}
+
+#label-Step-fullname {
+    font-size: 11px;
+    text-align: start;
+    justify-content: start;
+    position: absolute;
+    margin: 5px auto;
+    padding: 1px;
+}
+
+#planbtn {
+    display: none;
+}
+
+.fadeOut {
+    animation: fadeOutAnimation 1s ease-out;
+}
+
+
+/* Define la animación de desvanecimiento */
+
+@keyframes fadeOutAnimation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+/** ESTO ES PARA LA ANIMACIÓN DE LAS LETRAS DEL CÓDIGO */
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(10px);
+    }
+}
+
+.shake {
+    animation: shake 1s ease-in-out;
+    /* background-color: #56125b; */
+    font-weight: bold;
+}
+
+
+/** responsive loaing **/
+
+@media (min-width: 768px) {
+    .loader {
+        width: 320px;
+    }
+    .footer .footer-cols {
+        gap: 6.5rem;
+    }
+    .footer a {
+        font-size: 0.7rem;
+    }
+    #label-Step-email {
+        font-size: 11px;
+    }
+    #label-Step-username {
+        font-size: 11px;
+    }
+    #label-Step-username {
+        font-size: 10px;
+    }
+    #label-Code {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 1070px) {
+    .loader {
+        width: 29.6vw;
+    }
+    .footer .footer-cols {
+        gap: 8.5rem;
+    }
+    .footer a {
+        font-size: 0.8rem;
+    }
+    #label-Step-email {
+        font-size: 13px;
+    }
+    #label-Step-username {
+        font-size: 12px;
+    }
+    #label-Code {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .loader {
+        width: 430px;
+    }
+    .footer .footer-cols {
+        gap: 10rem;
+    }
+    .footer a {
+        font-size: 0.9rem;
+    }
+    #label-Step-email {
+        font-size: 15px;
+    }
+    #label-Step-username {
+        font-size: 14px;
+    }
+    #label-Code {
+        font-size: 15px;
+    }
 }

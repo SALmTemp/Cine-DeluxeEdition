@@ -56,6 +56,7 @@ const homePageSections = [{
         path: "/movie/popular",
     },
 
+
     // Puedes seguir agregando más secciones según las categorías disponibles en la API
 ];
 
@@ -180,6 +181,7 @@ const heroBanner = function({ results: movieList }) {
         /*  Agrega la diapositiva al banner
         */
 
+
         banner.querySelector(".banner-slider").appendChild(sliderItem);
 
 
@@ -234,6 +236,7 @@ const heroBanner = function({ results: movieList }) {
         );
     }
 };
+
 
 /*
 /*  Función para agregar funcionalidad al deslizador del banner principal
