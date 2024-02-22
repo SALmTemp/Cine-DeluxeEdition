@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <title>
-         StreMovify Sign Up Page
+        StreMovify
     </title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,19 +10,16 @@
 
     <!-- Primary meta tags -->
     <meta name="description" content="StreMovify is a popular movie app made by TeamMondongo." />
-
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url_for('static', filename='/assets/image/movie-roll.png')}}" type="image/svg+xml"/>
-
-    <!-- google font link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     
     <!----AQUI VA LOS STYLES CSS-->
      <!-- custom css link -->
     
-    <link rel="shortcut icon" img src="{{ url_for('static', filename='assets/image/logo.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{url_for('static', filename='/css/main/Register.css')}}">
-    
+    <link rel="shortcut icon" href="/image/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/main/Cancelled-Payment.css')}}">
     
    
    
@@ -33,10 +30,8 @@
   {% endblock %}
 
   <!---AQUI VA LOS SCRIPT-->
-  <script src="{{url_for('static', filename='js/register.js')}}">defer</script>
-  <script src="{{url_for('static', filename='js/apitransacti.js')}}" type="module"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="{{ url_for('static', filename='js/cancelled-payment.js') }}"></script>
 
 
   

@@ -39,7 +39,7 @@ from rutas.login import routes_login
 from rutas.register import routes_register
 from rutas.profile import routes_profile
 from rutas.presentation import routes_presentation
-
+from rutas.cancelledpayment import routes_cancelledpayment
 
 
 
@@ -83,6 +83,7 @@ app.register_blueprint(routes_login, url_prefix="/fronted")
 app.register_blueprint(routes_register, url_prefix="/fronted")
 app.register_blueprint(routes_profile, url_prefix="/fronted")
 app.register_blueprint(routes_presentation, url_prefix="/fronted")
+app.register_blueprint(routes_cancelledpayment, url_prefix="/fronted")
 
 
 
